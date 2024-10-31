@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        What is your address?
+      </h1>
+
+      <form class="form" action="/layouts/eligibility/check-address" method="post">
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-check">
+            Postcode
+          </label>
+          <div class="govuk-hint">Enter your postcode and choose and address from the list</div>
+          <input class="govuk-input govuk-input--width-10" id="address-check" name="address-check" type="text" autocomplete="postal-code" value="{{data['address-check']}}">
+        </div>
+
+        <div class="govuk-body">
+          <a href="check-address-manual">Can't find your address?</a>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

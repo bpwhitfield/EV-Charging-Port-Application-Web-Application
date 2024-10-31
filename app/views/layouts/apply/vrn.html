@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Enter your Vehicle Registration Number (VRN)
+      </h1>
+
+      <form class="form" action="/layouts/apply/vrn" method="post">
+
+        <div class="govuk-form-group">
+          <div class="govuk-hint">Your answer has been carried through from an earlier question</div>
+          <input class="govuk-input govuk-input--width-10" id="vrn" name="vrn" type="text" value="{% if (data['vrn']) %}{{data['vrn']}}{% else %}{{data['vrn-check']}}{% endif %}">
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

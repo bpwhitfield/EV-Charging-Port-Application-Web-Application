@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Enter your address
+      </h1>
+
+      <form class="form" action="/layouts/apply/address" method="post">
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-postcode">
+            Postcode
+          </label>
+          <div class="govuk-hint">Your answer has been carried through from an earlier question</div>
+          <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text" 
+          autocomplete="postal-code" value="{% if (data['address-postcode']) %}{{data['address-postcode']}}{% else %}{{data['address-check']}}{% endif %}">
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

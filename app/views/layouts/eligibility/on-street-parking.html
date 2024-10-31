@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Does your street have adequate on-street parking?
+      </h1>
+
+      <form class="form" action="/layouts/eligibility/on-street-parking" method="post">
+
+        <p>
+           <ul class="govuk-list govuk-list--bullet">
+            <li>Street parking must be generally available outside or near your home.</li>
+            <li> The on-street parking is legal and does not disrupt the safety or flow of vehicles 
+              and pedestrians.</li>
+           </ul>
+        </p>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="on-street-parking" name="on-street-parking" type="radio" value="yes">
+            <label class="govuk-label govuk-radios__label" for="on-street-parking">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="on-street-parking-2" name="on-street-parking" type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="on-street-parking-2">
+              No
+            </label>
+          </div>
+        </div>
+        <br>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

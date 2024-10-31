@@ -1,0 +1,48 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{ serviceName }}
+      </h1>
+
+      <p>Use this service to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Check your eligibility to apply for a grant</li>
+        <li>Apply for an electric vehicle charging port grant</li>
+      </ul>
+
+      <p>Registering takes around 5 minutes.</p>
+
+      {{ govukButton({
+        text: "Start now",
+        href: "./eligibility/on-street-parking",
+        isStartButton: true
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        You will need:
+      </h2>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Your vehicle registration number</li>
+        <li>Your address details</li>
+      </ul>
+
+    </div>
+  </div>
+
+{% endblock %}
