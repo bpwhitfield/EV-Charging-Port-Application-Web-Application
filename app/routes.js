@@ -18,6 +18,15 @@ router.post('/layouts/eligibility/on-street-parking', function (req, res) {
   }
 })
 
+router.post('/layouts/eligibility/check-vrn', function (req, res) {
+
+  // Check whether the variable matches a condition
+  if (true == true) {
+    // Send user to next page
+    res.redirect('/layouts/eligibility/check-address')
+  }
+})
+
 router.post('/layouts/eligibility/check-address', function (req, res) {
 
   // Make a variable and give it the value from 'how-many-balls'
