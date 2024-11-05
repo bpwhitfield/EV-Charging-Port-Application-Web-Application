@@ -1,38 +1,49 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+Question page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
-  {{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.back()"
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
 }) }}
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
-        What is the Vehicle Registration Number (VRN) of the car you intend to charge?
-      </h1>
+    <h1 class="govuk-heading-l">
+      What is the Vehicle Registration Number (VRN) of the car you intend to charge?
+    </h1>
 
-      <form class="form" action="./check-vrn" method="post">
+    <form class="form" action="./check-vrn" method="post">
+      {% if(errors) %}
+      <div class="govuk-form-group govuk-form-group--error">
+        <p id="vrn-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter a VRN
+        </p>
+        {% endif %}
 
         <div class="govuk-form-group">
-          <input class="govuk-input govuk-input--width-10" id="vrn-check" name="vrn-check" type="text" value="{{data['vrn-check']}}">
+          <input class="govuk-input govuk-input--width-10" id="vrn-check" name="vrn-check" type="text"
+            value="{{data['vrn-check']}}">
         </div>
+        {% if(errors) %}
+      </div>
+      {% endif %}
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
 
-      </form>
+      {{ govukButton({
+      text: "Continue"
+      }) }}
 
-    </div>
+    </form>
+
   </div>
+</div>
 
 {% endblock %}

@@ -8,35 +8,53 @@ const { sendApplication } = require('./clients/applicationsApiClient.js')
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+const express = require("express");
+const { body, validationResult } = require("express-validator");
+
+// Express.js middleware to use JSON objects
+router.use(express.json());
+
 // Add your routes here
-router.post('/layouts/eligibility/on-street-parking', function (req, res) {
+router.post('/layouts/eligibility/on-street-parking',
+  [
+    [
+      body('on-street-parking').notEmpty(),
+    ]
+  ],
+  function (req, res) {
 
-  // Check whether the variable matches a condition
-  if (true == true) {
-    // Send user to next page
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.render('/layouts/eligibility/on-street-parking', { errors: errors.array() });
+    }
     res.redirect('/layouts/eligibility/check-vrn')
-  }
-})
+  })
 
-router.post('/layouts/eligibility/check-vrn', function (req, res) {
+router.post('/layouts/eligibility/check-vrn',
+  [
+    [
+      body('vrn-check').notEmpty(),
+    ]
+  ],
+  function (req, res) {
 
-  // Check whether the variable matches a condition
-  if (true == true) {
-    // Send user to next page
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.render('/layouts/eligibility/check-vrn', { errors: errors.array() });
+    }
     res.redirect('/layouts/eligibility/check-address')
-  }
-})
+
+  })
 
 router.post('/layouts/eligibility/check-address', function (req, res) {
 
-  // Make a variable and give it the value from 'how-many-balls'
   var onStreetParking = req.session.data['on-street-parking']
   console.log(req.session.data)
   console.log(onStreetParking)
 
-  // Check whether the variable matches a condition
   if (onStreetParking == "yes") {
-    // Send user to next page
     res.redirect('/layouts/apply/guidance')
   } else {
     res.redirect('/layouts/not-eligible')
